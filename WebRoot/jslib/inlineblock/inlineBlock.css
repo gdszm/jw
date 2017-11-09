@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* Mozilla（熟悉的有Firefox，Flock等浏览器）、 */
+/* WebKit（熟悉的有Safari、Chrome等浏览器）、 */
+/* Opera（Opera浏览器）、 */
+/* Trident（讨厌的IE浏览器）。 */
+
+/* 根据不同的内核，一些私有属性的css前缀不一样  */
+
+/* Mozilla内核　　 css前缀-moz; */
+
+/* WebKit内核　　css前缀-webkit ;   */
+
+/* Opera 内核 　　css前缀 -o ; */
+
+/* Trident内核　　css前缀 -ms ;    */
+
+/* css前缀 -khtml：苹果浏览器之前的版本，后改为WebKit内核 */
+
+* {
+	font-size: 12px;/*inline-block布局代码的核心代码1*/
+	letter-spacing: normal; /*兼容苹果浏览器，负值对其他浏览器无效*/
+}
+
+.out {
+	font-size: 0px; /*inline-block布局代码的核心代码1*/
+	letter-spacing: -8px; /*兼容苹果浏览器，负值对其他浏览器无效*/
+}
+
+.in {
+	display: inline-block; /*inline-block布局代码的核心代码2*/
+	vertical-align: top; /*inline-block布局代码的辅助代码1*/
+}
+
+.in {
+	*display: inline; /*补充的兼容代码;专门给IE6和IE7用的兼容语法，只有这样IE6和IE7才能表现为inline-block*/
+}
