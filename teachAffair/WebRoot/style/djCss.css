@@ -1,0 +1,154 @@
+body {
+	visibility: hidden;
+	font-family: helvetica, tahoma, verdana, sans-serif;
+	padding: 10px;
+	font-size: 14px;
+	margin: 0;
+}
+input,select,textarea {
+	border:1px #CCC solid;
+}
+*{margin:0;padding:0;}
+#nav {
+ line-height: 27px;  list-style-type: none;text-align:left;
+ left: -999em; width: 180px; position: absolute; margin-top: 5px;
+}
+#nav  li{
+ float: left; width: 180px; margin-top: 5px;
+}
+#nav  a{
+ display: block;width: 156px;text-align:left;padding-left:24px;
+}
+#nav  a:link  {
+ 	text-decoration:none;
+}
+#nav  a:visited  {
+ 	text-decoration:none;
+}
+#nav a:hover  {
+ text-decoration:none;font-weight:normal;
+
+}
+#nav {
+ left: auto;
+}
+#nav {
+ left: auto;
+}
+#content {
+ clear: left; 
+}
+
+.tableForm {
+	border-collapse: collapse;
+	width: 100%;
+	border:1px #AAA solid;
+}
+.tableForm th {
+	text-align: right;
+	border: 1px solid #ccc;
+}
+
+.tableForm td {
+	text-align: left;
+	border: 1px solid #ccc;
+}
+
+.tableForm input {
+	width: 96%;
+	border: 1px solid #ccc;
+}
+
+.tableForm textarea {
+	width: 96%;
+}
+
+.info {
+	background: #FFFEE6;
+	color: #8F5700;
+	padding: 12px;
+}
+
+.tip {
+	width: 24px;
+	height: 16px;
+	float: left;
+}
+/* CSS Document */
+#top{ width:100%; height:80px; background-image:url(images/top.jpg);}
+#logo{ width:70px; height:53px; float:left; margin-left:50px; margin-top:12px;}
+#weizi{ width:60%; height:44px; float:left; margin-left:30px; margin-top:12px;}
+#dl{ width:30px; height:30px; float:left; margin-right:15px; margin-top:0px;}
+#hyn{ height:10px; float:left; margin-right:30px; margin-top:8px;}
+#zi{font-size:14px; font-family:"1"; color:#ffffff;margin-right:1px; margin-top:9px;}
+#shezhi{ width:20px; height:20px; float:right; margin-right:18px; margin-top:10px;}
+#shi{ width:60px; height:20px; float:right; margin-right:12px; margin-top:45px;}
+#jc{ width:22px; height:30px; float:right; margin-top:25px; margin-right:10px;}
+#jic1{height:18px; float:left; margin-left:30px; margin-top:25px;}
+#mmxg{ width:22px; height:30px; float:left; margin-right:8px; margin-top:5px;}
+#dx{height:25px; float:right;}
+#tuichu{height:30px; float:right; margin-right:15px; margin-top:18px;}
+#jianci{margin-top:28px; float:right; margin-left:10px;}
+#zui{ width:100%; height:120px;}
+
+TD {
+	font-family:"Microsoft YaHei",΢���ź�; FONT-SIZE: 14px; LINE-HEIGHT: 15px
+}
+.tablecontent {
+	BACKGROUND-COLOR: #ffffff;
+	border:solid #95B8E7 1px;
+	text-align: left;
+}
+.tabletitle {
+	BACKGROUND-COLOR: #e7f0ff; COLOR: #000080; padding:6px;
+	border:solid #95B8E7 1px;
+}
+.tablelabel{
+	BACKGROUND-COLOR: #e7f0ff;
+	border:solid #95B8E7 1px;
+	text-align:center;
+}
+.tablemain {
+	BACKGROUND-COLOR: #60c8e1; COLOR: #000000; font-size:18px;font-weight: bold;
+	border:solid #95B8E7 1px;
+}
+.tablespecial{
+	BACKGROUND-COLOR: #60c8e1; COLOR: #F00000;
+	border:solid #95B8E7 1px;
+}
+.ToolBar {
+	BACKGROUND-COLOR: #F3F3F3;
+}
+.tableborder {
+	/*BACKGROUND-COLOR: #ffffff; 
+	BORDER-BOTTOM: #95B8E7 1px solid; 
+	BORDER-LEFT: #95B8E7 1px solid; 
+	BORDER-RIGHT: #95B8E7 1px solid; 
+	BORDER-TOP: #95B8E7 1px solid; 
+	cellpadding:1;
+	cellspacing:1;*/
+	border-collapse:collapse;border:none;
+	WIDTH: 100%;
+}
+.linkbutton{
+	background:#ddf5f9;
+}
+.one{
+   width: 260px;
+   height: 400px;
+   font-size: 14px;
+   
+  }
+  
+  /*导航*/
+.pgwMenuCustom { background: #e6412e; height: 40px; position: relative; list-style: none ;float: left;}
+.pgwMenuCustom ul { list-style: none;  white-space: nowrap; margin: 0; padding: 0; }
+.pgwMenuCustom li { float: left }
+.pgwMenuCustom a { display: block; height: 40px; float: left; padding: 0 15px; text-align: center;color: #fff;font: bold 15px/40px "microsoft yahei";text-decoration: none;}
+.pgwMenuCustom li.selected {background: #c32311;}
+.pgwMenuCustom li:hover { background: #c32311; text-decoration: none;}
+.dh{background: #e6412e;}
+.Font{float: left;line-height:40px;margin-left: 300px;}
+#FontScroll{width:300px;height:25px;line-height:25px;overflow:Hidden;float: left;padding: 2px 4px;margin-top: 5px;margin-bottom: 2px;margin-left: 5px;}
+#FontScroll .line{text-align:left;width:100%;}
+#FontScroll .fontColor a{color:red;}

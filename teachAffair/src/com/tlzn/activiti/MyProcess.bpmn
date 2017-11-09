@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:jbpm="http://jbpm.org/bpmn2" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://jbpm.org/example/bpmn2/none_start_end_event" xsi:schemaLocation="http://schema.omg.org/spec/BPMN/2.0 ../../../../../../../../../../bpmn/src/main/resources/BPMN20.xsd">
+  <process id="leave" name="BPMN2 Example process" isExecutable="true">
+    <startEvent id="start"></startEvent>
+    <sequenceFlow id="flow1" name="To Apply Leave" sourceRef="start" targetRef="applyLeave"></sequenceFlow>
+    <userTask id="applyLeave" name="Apply Leave" activiti:candidateGroups="user" implementation="other"></userTask>
+    <sequenceFlow id="to_teacher" name="To Teacher Check" sourceRef="applyLeave" targetRef="techerCheck"></sequenceFlow>
+    <userTask id="techerCheck" name="Teacher Check" activiti:candidateGroups="teachers" implementation="other"></userTask>
+    <sequenceFlow id="teacherRefuse" name="Teacher Refuse" sourceRef="techerCheck" targetRef="applyLeave">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approveResult == 'NotOK'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="to_decide" name="To Decide" sourceRef="techerCheck" targetRef="decideBasedOnAmountGateway">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approveResult == 'OK'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="decideBasedOnAmountGateway" name="decideBasedOnAmount"></exclusiveGateway>
+    <sequenceFlow id="to_master" name="To Master" sourceRef="decideBasedOnAmountGateway" targetRef="masterCheck">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days > 3}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="to_end1" name="To End1" sourceRef="decideBasedOnAmountGateway" targetRef="theEnd">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days <= 3}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="masterCheck" name="Master Check" activiti:candidateGroups="masters" implementation="other"></userTask>
+    <sequenceFlow id="masterRefuse" name="Master Refuse" sourceRef="masterCheck" targetRef="applyLeave">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approveResult == 'NotOK'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="to_end2" name="To End2" sourceRef="masterCheck" targetRef="theEnd">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approveResult == 'OK'}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="theEnd" name="End"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leave">
+    <bpmndi:BPMNPlane bpmnElement="leave" id="BPMNPlane_leave">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="78.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="applyLeave" id="BPMNShape_applyLeave">
+        <omgdc:Bounds height="60.0" width="100.0" x="80.0" y="63.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="techerCheck" id="BPMNShape_techerCheck">
+        <omgdc:Bounds height="60.0" width="100.0" x="230.0" y="0.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="decideBasedOnAmountGateway" id="BPMNShape_decideBasedOnAmountGateway">
+        <omgdc:Bounds height="40.0" width="40.0" x="380.0" y="10.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="masterCheck" id="BPMNShape_masterCheck">
+        <omgdc:Bounds height="60.0" width="100.0" x="470.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="620.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="35.0" y="95.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="93.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="35.0" y="95.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="to_teacher" id="BPMNEdge_to_teacher">
+        <omgdi:waypoint x="180.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="76.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="230.0" y="30.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="48.0" width="100.0" x="180.0" y="93.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="teacherRefuse" id="BPMNEdge_teacherRefuse">
+        <omgdi:waypoint x="230.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="218.0" y="42.0"></omgdi:waypoint>
+        <omgdi:waypoint x="218.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="93.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="230.0" y="30.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="to_decide" id="BPMNEdge_to_decide">
+        <omgdi:waypoint x="330.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="342.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="342.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="380.0" y="30.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="330.0" y="30.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="to_master" id="BPMNEdge_to_master">
+        <omgdi:waypoint x="420.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="470.0" y="130.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="420.0" y="30.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="to_end1" id="BPMNEdge_to_end1">
+        <omgdi:waypoint x="420.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="65.0"></omgdi:waypoint>
+        <omgdi:waypoint x="620.0" y="67.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="420.0" y="30.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="masterRefuse" id="BPMNEdge_masterRefuse">
+        <omgdi:waypoint x="470.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="458.0" y="142.0"></omgdi:waypoint>
+        <omgdi:waypoint x="458.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="93.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="470.0" y="130.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="to_end2" id="BPMNEdge_to_end2">
+        <omgdi:waypoint x="570.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="65.0"></omgdi:waypoint>
+        <omgdi:waypoint x="620.0" y="67.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="570.0" y="130.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
