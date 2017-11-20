@@ -32,44 +32,44 @@
 			}, {
 				field : 'courseId',
 				title : '课程号',
-				width : 100,
+				width : 50,
 				align : 'center'
 			},{
 				field : 'courseName',
 				title : '课程名称',
-				width : 150,
+				width : 120,
 				align : 'center',
 			},{
 				field : 'courseAttName',
 				title : '课程属性',
-				width : 120,
+				width : 80,
 				align : 'center',
 			}
 			]],
 			columns : [ [{
 				field : 'sortNo',
 				title : '课程序号',
-				width : 100,
+				width : 50,
 				align : 'center',
 			},{
 				field : 'credit',
 				title : '课程学分',
-				width : 100,
+				width : 60,
 				align : 'center',
 			},{
 				field : 'courseCon',
 				title : '课容量',
-				width : 100,
+				width : 80,
 				align : 'center',
 			},{
 				field : 'courseSelNum',
 				title : '选课人数',
-				width : 100,
+				width : 80,
 				align : 'center',
 			},{
 				field : 'courseSpareNum',
 				title : '课余量',
-				width : 100,
+				width : 80,
 				align : 'center',
 			},{
 				field : 'weeks',
@@ -79,27 +79,27 @@
 			},{
 				field : 'week',
 				title : '星期',
-				width : 50,
+				width : 200,
 				align : 'center',
 			},{
 				field : 'section',
 				title : '节次',
-				width : 50,
+				width : 200,
 				align : 'center',
 			},{
 				field : 'campusName',
 				title : '校区',
-				width : 200,
+				width : 120,
 				align : 'center',
 			},{
 				field : 'teachingbuildingName',
 				title : '教学楼',
-				width : 200,
+				width : 120,
 				align : 'center',
 			},{
 				field : 'classroomName',
 				title : '教室',
-				width : 200,
+				width : 120,
 				align : 'center',
 			}
 			] ],
@@ -140,13 +140,12 @@
 	} */
 	//新增
 	function appand2() {
-		var p = dj
-				.dialog({
+		var p = dj.dialog({
 					title : '新增授课',
-					href : '${pageContext.request.contextPath}/profess!professAdd.do',
-					//maximized : true,
-					width : 400,
-					height :250,
+					href : '${pageContext.request.contextPath}/profess!professAdd.do?teacherId='+'${teacherId}',
+					width : 700,
+					height : 420,
+					maximized : true,
 					iconCls : 'icon-save',
 					buttons : [
 							{
@@ -214,7 +213,7 @@
 									}
 								} ],
 						onLoad : function() {
-							initCombox('addForm');
+							initCombox('editForm');
 						}
 					});
 		} else if (rows.length > 1) {

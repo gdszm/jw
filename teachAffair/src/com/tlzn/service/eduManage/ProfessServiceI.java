@@ -13,4 +13,6 @@ public interface ProfessServiceI {
 	public void del(Profess profess) throws Exception;
 	public void edit(Profess profess) throws Exception;
 	public DataGrid datagridCount(Profess profess) throws Exception;
+	public String professTeacherAdd(Profess profess,HttpSession httpSession) throws Exception;
+	public void professTeacherdel(Profess profess) throws Exception;
 }

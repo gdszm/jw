@@ -253,11 +253,12 @@ public class Generator
 			return this.getGeneratorThree(prefix,seqfield,-1);
 	}
 	//授课时间号
-		public String getProfessTimeNO() throws Exception  {
-				String prefix="";
-				String seqfield="professTimeNO";
-				return this.getGeneratorThree(prefix,seqfield,-1);
-		}
+	public String getProfessTimeNO() throws Exception  {
+			String prefix="";
+			String seqfield="professTimeNO";
+			return this.getGeneratorThree(prefix,seqfield,-1);
+	}
+
 	/**
 	 * 得到派工单编码
 	 * @return

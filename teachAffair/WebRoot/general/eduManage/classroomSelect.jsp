@@ -22,6 +22,7 @@ function initClassroom() {
 		]],
 		columns:[[
 			{field:'typeName',title:'教室类型',align:'center',width:100,sortable:true},
+			{field:'campusName',title:'所在校区',align:'center',width:120,sortable:true},
 			{field:'buildingName',title:'所在教学楼',align:'center',width:120,sortable:true},
 			{field:'floor',title:'所在楼层',align:'center',width:60,sortable:true},
 			{field:'houseNo',title:'门牌号',align:'center',width:50,sortable:true},

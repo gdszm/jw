@@ -106,7 +106,7 @@
 	function appand() {
 		var p = dj.dialog({
 					title : '新增授课教师',
-					href : '${pageContext.request.contextPath}/profess!professAdd.do',
+					href : '${pageContext.request.contextPath}/profess!professTeacherAddPage.do',
 					//maximized : true,
 					width : 400,
 					height :250,
@@ -118,7 +118,7 @@
 								handler : function() {
 									var f = p.find('form');
 									f.form('submit',{
-										url : '${pageContext.request.contextPath}/profess!add.do',
+										url : '${pageContext.request.contextPath}/profess!professTeacherAdd.do',
 										success : function(d) {
 											var json = $.parseJSON(d);
 											if (json.success) {
@@ -144,7 +144,7 @@
 	//管理授课列表
 	function professList() {
 		var rows = datagrid.datagrid('getSelections');
-		if (rows.length == 1 && rows[0].courseSu!='0') {
+		if (rows.length == 1) {
 			var p = dj.dialog({
 						title : '授课列表',
 						href : '${pageContext.request.contextPath}/profess!professList.do?teacherId='+ rows[0].teacherId,
@@ -180,8 +180,6 @@
 							initCombox('addForm');
 						}
 					});
-		} else if(rows[0].courseSu=='0') {
-			parent.dj.messagerAlert('提示', '该教师的没有授课列表，请重新选择！', 'error');
 		} else if (rows.length > 1) {
 			parent.dj.messagerAlert('提示', '同一时间只能管理一位教师的授课列表！', 'error');
 		} else {
@@ -207,9 +205,8 @@
 											ids.push(rows[i].teacherId);
 										}
 									}
-									alert(ids);
 									$.ajax({
-												url : '${pageContext.request.contextPath}/profess!delete.do',
+												url : '${pageContext.request.contextPath}/profess!professTeacherdel.do',
 												data : {
 													ids : ids.join(',')
 												},
