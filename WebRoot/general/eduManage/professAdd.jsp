@@ -1,65 +1,138 @@
 <%@ page contentType="text/html; charset=utf-8" language="java"	errorPage=""%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <script type="text/javascript">
-
-//班主任选择部分 开始//
-var pTeacher;
-function teacherSelect(){
-	pTeacher=dj.dialog({
-		title : '选择该班班组任',
-		href : '${pageContext.request.contextPath}/teacher!teacherSelect.do',
-		width : 700,
-		height : 400,
-		buttons : [ {
-			text : '确定',
-			iconCls:'icon-ok',
-			handler : function() {
-				saveTeacherAdd();
-			}
-		},{ 
-			text: ' 取 消', 
-			iconCls:'icon-cancel',
-			handler: function() { 
-				pTeacher.dialog('close'); 
-			}
-		}],
-		onLoad : function() {
-			initTeacher();
-		}
-	});
-}
-//班主任选择添加
-function saveTeacherAdd(){
-	var rows=$('#teacherGrid').datagrid('getSelected');
+//课程选择部分 开始//
+//课程选择添加
+function saveCourseAdd(){
+	var rows=$('#coursegrid').datagrid('getSelected');
 	  if(rows){
-		  $('#teacherId').val(rows.id);
-		  $('#teacherNameId').val(rows.name);
+		  $('#courseIdId').val(rows.id);
+		  $('#courseNameId').val(rows.name);
+		  $('#courseAttId').combobox('setValue', rows.courseAtt);
 	  }else{
-		  $('#teacherId').val('');
-		  $('#teacherNameId').val('');
+		  $('#courseIdId').val('');
+		  $('#courseNameId').val('');
+		  $('#courseAttId').combobox('setValue', '');
 	  }
-	  pTeacher.dialog('close');
+	  pCourse.dialog('close');
 }
-//班组任选择部分 结束//
+//课程选择部分 结束//
+
+//教室选择部分 开始//
+//教室选择添加
+function saveClassroomAdd(){
+	var rows=$('#classroomgrid').datagrid('getSelected');
+	  if(rows){
+		  	$('#classroomIdId').val(rows.id);
+		  	$('#campusNameId').val(rows.campusName);
+		  	$('#teachingbuildingNameId').val(rows.buildingName);
+		  	$('#floorId').val(rows.floor);
+		  	$('#houseNoId').val(rows.houseNo);
+		  	$('#classroomNameId').val(rows.name);
+	  }else{
+		  $('#classroomNoId').val('');
+		  $('#campusNameId').val('');
+		  $('#teachingbuildingNameId').val('');
+		  $('#floorId').val('');
+		  $('#houseNoId').val('');
+		  $('#classroomNameId').val('');
+	  }
+	  pClassroom.dialog('close');
+}
+//教室选择部分 结束//
+
+
+//授课时间选择部分 开始//
+//授课时间选择添加
+function saveTimeAdd(){
+
+	var rows=$('#timeGrid').datagrid('getSelected');
+	  if(rows){
+		  	$('#professTimeId').val(rows.id);
+		    $('#weeksId').val(rows.weeks);
+		    $('#weekId').val(rows.week);
+		    $('#sectionId').val(rows.section);
+	  }else{
+		  $('#professTimeId').val('');
+		  $('#weeksId').val('');
+		  $('#weekId').val('');
+		  $('#sectionId').val('');
+	  }
+	  ptime.dialog('close');
+}
+//授课时间选择部分 结束//
+$(document).ready(function() {
+	$('#addForm input[name=professAtt]').combobox({
+		url : '${pageContext.request.contextPath}/dic!combox.do?ctype=professAtt',
+		valueField:'cvalue', 
+		editable:false,
+		panelHeight:'100',
+        textField:'ckey',
+        required:true,
+        validType:'sel'
+	});
+});
 </script>
-<form id="addForm"  method="post">
-	<table class="tableborder" id="formTable">
-		<tr height="40">
-			<td nowrap class="tablelabel">教师编号：</td>
-			<td align="left" class="tablecontent">
-				<input id="teacherId" name="teacherId" type="text" value="${classes.teacherId}" class="easyui-validatebox" data-options="required:true,missingMessage:'请点击选择按钮选择一位教师后再提交！'" readonly="readonly" style="margin-left:2px" >
-			</td>
-		</tr>
-		<tr height="40">
-			<td nowrap class="tablelabel">教师姓名：</td>
-			<td align="left" class="tablecontent">
-				<input id="teacherNameId" type="text"  name="adminTeacherName" value="${classes.adminTeacherName}" style="margin-left:2px" readonly="readonly"/>
-			</td>
-		</tr>
-		<tr height="40">
-			<td align="left" class="tablecontent" colspan="2" >
-	        	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="teacherSelect()" style="margin-left:150px;">选择</a>
-	       		<a href="javascript:void(0);" class="easyui-linkbutton" onclick="$('#teacherId').val('');$('#teacherNameId').val('');">取消</a>
-			</td>
-		</tr>
-	</table>
-</form>
+<div data-options="region:'center',border:false" style="padding:3px;background:#fff;border:1px solid #ccc;">
+<div align="center" style="padding: 5px;overflow: hidden;">
+		<form id="addForm" method="post">
+			<input name="id" value="${profess.id}" type="hidden" />
+			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
+				<tr>
+					<td>
+						<table class="tableborder" id="formTable">
+							<tr height="40">
+				              <td height="45" colspan="4" align="middle" nowrap="nowrap" class="tablemain" width="100%">
+				               	<div align="center"><strong>授课信息新增</strong></div>
+				              </td>
+				            </tr>
+							<tr height="40" class="tablelabel">
+								<td nowrap class="tablelabel" width="10%">教师</td>
+								<td align="left" class="tablecontent" width="90%" colspan="3">
+									<input name="teacherId" value="${profess.teacherId}" type="hidden" style="width:200px;padding:2px" readonly="readonly"/>
+									&nbsp;姓名：<input name="teacherName" value="${profess.teacherName}" style="width:200px;padding:2px" readonly="readonly"/>
+									&nbsp;性别：<input name="sex" value="${profess.sex}" style="width:200px;padding:2px" readonly="readonly"/>
+								</td>
+							</tr>
+							<tr height="40" class="tablelabel">
+								<td nowrap class="tablelabel" width="10%">课程</td>
+								<td align="left" class="tablecontent" width="90%" colspan="3">
+									<input id="courseIdId" name="courseId" value="${profess.courseId}" class="easyui-validatebox" data-options="required:true" type="hidden" style="width:200px;padding:2px" readonly="readonly" />
+									&nbsp;课程名称：<input id="courseNameId" name="courseName" value="${profess.courseName}" class="easyui-validatebox" data-options="required:true" style="width:200px;padding:2px" readonly="readonly"/>
+									&nbsp;课程属性：<input id="courseAttId" name="courseAtt" value="${profess.courseAtt}" style="width:200px;padding:2px" readonly="readonly"/>
+									<a href="javascript:void(0);" class="easyui-linkbutton" onclick="courseSelect()">选择</a>
+					             	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="$('#courseIdId').val('');$('#courseNameId').val(''); $('#courseAttId').combobox('setValue', '');">取消</a>
+								</td>
+							</tr>
+							<tr height="40" class="tablelabel">
+								<td nowrap class="tablelabel" width="10%">授课教室</td>
+								<td align="left" class="tablecontent" width="90%" colspan="3">
+									<input id="classroomIdId" name="classroomId" value="${profess.classroomId}" type="hidden"  style="width:100px;padding:2px" readonly="readonly"/>
+									&nbsp;校区：<input id="campusNameId" name="campusName" value="${profess.campusName}" style="width:100px;padding:2px" readonly="readonly"/>
+									&nbsp;教学楼：<input id="teachingbuildingNameId" name="teachingbuildingName" value="${profess.teachingbuildingName}" style="width:100px;padding:2px" readonly="readonly"/>
+									&nbsp;楼层：<input id="floorId" name="floor" value="${profess.floor}" style="width:15px;padding:2px" readonly="readonly"/>
+									&nbsp;门牌号：<input id="houseNoId" name="houseNo" value="${profess.houseNo}" style="width:25px;padding:2px" readonly="readonly"/>
+									&nbsp;教室名称：<input id="classroomNameId" name="classroomName" value="${profess.classroomName}" class="easyui-validatebox" data-options="required:true" style="width:100px;padding:2px" readonly="readonly"/>
+				              		<a href="javascript:void(0);" class="easyui-linkbutton" onclick="classRoomSelect()">选择</a>
+					             	<a href="javascript:void(0);" class="easyui-linkbutton" 
+					             	onclick="$('#classroomIdId').val('');$('#campusNameId').val('');$('#teachingbuildingNameId').val('');$('#floorId').val('');$('#houseNoId').val('');$('#classroomNameId').val('');">取消</a>
+								</td>
+							</tr>
+							<tr height="40" class="tablelabel">
+								<td nowrap class="tablelabel" width="10%">授课时间：</td>
+								<td align="left" class="tablecontent" width="90%" colspan="3">
+									<input id="professTimeId" name="professTimeId" value="${profess.professTimeId}" type="hidden" style="width:200px;padding:2px" readonly="readonly"/>
+									&nbsp;周次：<input id="weeksId" name="weeks" value="${profess.weeks}" class="easyui-validatebox" data-options="required:true" style="width:470px;padding:2px" readonly="readonly"/>
+									&nbsp;星期：<input id="weekId" name="week" value="${profess.week}" style="width:100px;padding:2px" readonly="readonly"/>
+									&nbsp;节次：<input id="sectionId" name="section" value="${profess.section}" style="width:100px;padding:2px" readonly="readonly"/>
+				              		<a href="javascript:void(0);" class="easyui-linkbutton" onclick="professTimeSelect()">选择</a>
+					             	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="$('#professTimeId').val('');$('#weeksId').val('');$('#weekId').val('');$('#sectionId').val('');">取消</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>

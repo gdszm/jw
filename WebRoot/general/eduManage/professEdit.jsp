@@ -48,7 +48,7 @@ function saveTimeAdd(){
 
 	var rows=$('#timeGrid').datagrid('getSelected');
 	  if(rows){
-		  	$('#professTimeId').val(rows.professTimeId);
+		  	$('#professTimeId').val(rows.id);
 		    $('#weeksId').val(rows.weeks);
 		    $('#weekId').val(rows.week);
 		    $('#sectionId').val(rows.section);
@@ -61,8 +61,9 @@ function saveTimeAdd(){
 	  ptime.dialog('close');
 }
 //授课时间选择部分 结束//
+
 $(document).ready(function() {
-	$('#addForm input[name=professAtt]').combobox({
+	$('#editForm input[name=professAtt]').combobox({
 		url : '${pageContext.request.contextPath}/dic!combox.do?ctype=professAtt',
 		valueField:'cvalue', 
 		editable:false,
@@ -75,7 +76,8 @@ $(document).ready(function() {
 </script>
 <div data-options="region:'center',border:false" style="padding:3px;background:#fff;border:1px solid #ccc;">
 <div align="center" style="padding: 5px;overflow: hidden;">
-		<form id="addForm" method="post">
+		<form id="editForm" method="post">
+			<input name="id" value="${profess.id}" type="hidden" />
 			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
 				<tr>
 					<td>
@@ -85,12 +87,6 @@ $(document).ready(function() {
 				               	<div align="center"><strong>授课信息修改</strong></div>
 				              </td>
 				            </tr>
-				            <tr height="40" class="tablelabel">
-				           		<td nowrap class="tablelabel" width="10%">授课号：</td>
-								<td align="left" class="tablecontent" width="20%" colspan="3">
-									<p style="height:15px;line-height:15px;padding-left:2px;">${profess.id}</p>
-								</td>
-							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">教师</td>
 								<td align="left" class="tablecontent" width="90%" colspan="3">
@@ -141,13 +137,3 @@ $(document).ready(function() {
 		</form>
 	</div>
 </div>
-<script type="text/javascript">
-	$.extend($.fn.validatebox.defaults.rules, {  
-		sel: {  
-			validator: function(value){ 
-				return value != '请选择...';  
-			},  
-			message: '此项必须选择！'  
-		}  
-	});  
-</script>

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tlzn.dao.base.BaseDaoI;
 import com.tlzn.model.dailywork.Tnotice;
 import com.tlzn.model.eduManage.Tclassroom;
+import com.tlzn.model.eduManage.Tcourse;
 import com.tlzn.model.eduManage.Tprofess;
 import com.tlzn.model.eduManage.TprofessTime;
 import com.tlzn.model.eduManage.Tteacher;
@@ -120,9 +121,12 @@ public class ProfessServiceImpl extends BaseServiceImpl implements ProfessServic
 		if (professList != null && professList.size() > 0) {
 			for (Tprofess tprofess: professList) {
 				Profess profess = new Profess();
-				BeanUtils.copyProperties(tprofess.getCourse(), profess);
-				BeanUtils.copyProperties(tprofess.getTeacher(), profess);
-				BeanUtils.copyProperties(tprofess.getProfesstime(), profess);
+				if(!util.isEmpty(tprofess.getCourse())) 
+					BeanUtils.copyProperties(tprofess.getCourse(), profess);
+				if(!util.isEmpty(tprofess.getTeacher())) 
+					BeanUtils.copyProperties(tprofess.getTeacher(), profess);
+				if(!util.isEmpty(tprofess.getProfesstime())) 
+					BeanUtils.copyProperties(tprofess.getProfesstime(), profess);
 				BeanUtils.copyProperties(tprofess, profess);
 				
 				// 教师
@@ -195,6 +199,7 @@ public class ProfessServiceImpl extends BaseServiceImpl implements ProfessServic
 	}
 	private String addWhere(Profess profess, String hql) throws Exception {
 		Util util=new Util();
+		
 		if(!util.isEmpty(profess.getId())){
 			 hql += " and t.id like '%"+profess.getId().trim()+"%'";
 		}
@@ -253,13 +258,16 @@ public class ProfessServiceImpl extends BaseServiceImpl implements ProfessServic
 //		if(!util.isEmpty(profess.getCrtETime())){
 //	    	hql+=" and date_format(t.crtTime,'%Y-%m-%d') <= '"+util.getFormatDate(profess.getCrtETime(),"yyyy-MM-dd")+"'";
 //	    }
+		
+		hql += " and t.course.id is not null ";
+
 		return hql;
 	}
 	
 	/**
-	 * 新增授课信息
+	 * 新增授课教师
 	 */
-	public String add(Profess profess,HttpSession httpSession) throws Exception {
+	public String professTeacherAdd(Profess profess,HttpSession httpSession) throws Exception {
 		
 		Util util=new Util();
 		Tprofess tprofess = new Tprofess();
@@ -276,9 +284,90 @@ public class ProfessServiceImpl extends BaseServiceImpl implements ProfessServic
 		return tprofess.getId();
 	}
 	/**
+	 * 新增授课
+	 */
+	public String add(Profess profess,HttpSession httpSession) throws Exception {
+		
+		Util util=new Util();
+		
+		String teacherId = profess.getTeacherId();
+		
+		Tprofess tprofess = new Tprofess();
+		
+		if(!util.isEmpty(teacherId)) {
+			
+			tprofess.setId(Generator.getInstance().getProfessNO());
+			
+			//教师
+			Tteacher teacher = teacherDAO.get(Tteacher.class, profess.getTeacherId());
+			if(!util.isEmpty(teacher)) {
+				tprofess.setTeacher(teacher);
+			}
+			
+			//课程
+			if(!util.isEmpty(profess.getCourseId())) {
+				Tcourse course = new Tcourse();
+				course.setId(profess.getCourseId());
+				tprofess.setCourse(course);
+			}
+			//上课教室
+			if(!util.isEmpty(profess.getClassroomId())) {
+				Tclassroom classroom = new Tclassroom();
+				classroom.setId(profess.getClassroomId());
+				tprofess.setClassroom(classroom);
+			}
+			//授课时间
+			if(!util.isEmpty(profess.getProfessTimeId())) {
+				TprofessTime professtime = new TprofessTime();
+				professtime.setId(profess.getProfessTimeId());
+				tprofess.setProfesstime(professtime);
+			}
+
+			if(util.isEmpty(tprofess.getCourseCon())) tprofess.setCourseCon(0);
+			if(util.isEmpty(tprofess.getCourseSelNum())) tprofess.setCourseSelNum(0);
+			if(util.isEmpty(tprofess.getCourseSpareNum())) tprofess.setCourseSpareNum(0);
+			
+			tprofess.setCrtTime(new Date());
+			tprofess.setUptTime(new Date());
+			
+			professDAO.save(tprofess);
+			
+			//生成日志
+			this.saveLog(Constants.LOG_TYPE_CODE_PROFESS, Constants.LOG_TYPE_OPERTYPE_ADD, tprofess.getId(), "[授课]保存授课");
+			
+		}
+		
+		return tprofess.getId();
+	
+	}
+	/**
 	 * 删除授课信息
 	 */
 	public void del(Profess profess) throws Exception {
+		
+		Util util=new Util();
+		String ids = profess.getIds();
+		if(!util.isEmpty(ids)){
+			String stringArray[]=ids.split(",");
+			for (String str : stringArray) {
+				if(!util.isEmpty(str)){
+					String id=str.trim();
+					List list = new ArrayList();
+					list.add(id);
+					Tprofess tprofess =professDAO.get("from Tprofess t where t.id=?",list);
+					if(!util.isEmpty(tprofess)) {
+						professDAO.delete(tprofess);
+						//生成日志
+						this.saveLog(Constants.LOG_TYPE_CODE_PROFESS, Constants.LOG_TYPE_OPERTYPE_DEL, id, "[授课]授课删除（授课ID："+id+"）");
+					}
+				}
+			}
+		}
+	}
+	/**
+	 * 删除授课教师
+	 */
+	public void professTeacherdel(Profess profess) throws Exception {
 		
 		Util util=new Util();
 		String ids = profess.getIds();
@@ -304,16 +393,38 @@ public class ProfessServiceImpl extends BaseServiceImpl implements ProfessServic
 	 */
 	public void edit(Profess profess) throws Exception {
 		
+		Util util=new Util();
 		String id = profess.getId();
 			if(id!=null && !"".equals(id)) {
 				Tprofess tprofess = professDAO.get(Tprofess.class,id);
-				BeanUtils.copyProperties(profess, tprofess, new String[]{"crtTime"});
+				
+				//课程
+				if(!util.isEmpty(profess.getCourseId())) {
+					Tcourse course = new Tcourse();
+					course.setId(profess.getCourseId());
+					tprofess.setCourse(course);
+				}
+				//上课教室
+				if(!util.isEmpty(profess.getClassroomId())) {
+					Tclassroom classroom = new Tclassroom();
+					classroom.setId(profess.getClassroomId());
+					tprofess.setClassroom(classroom);
+				}
+				//授课时间
+				if(!util.isEmpty(profess.getProfessTimeId())) {
+					TprofessTime professtime = new TprofessTime();
+					professtime.setId(profess.getProfessTimeId());
+					tprofess.setProfesstime(professtime);
+				}
+				
+				tprofess.setUptTime(new Date());
+//				BeanUtils.copyProperties(profess, tprofess, new String[]{"crtTime"});
 //				Tarchives arch = archivesDAO.get(Tarchives.class, profess.getArchNo());
 //				tprofess.setArchives(arch);
 //				Tdept dept=deptDAO.get(Tdept.class, profess.getCid());
 //				tprofess.setTdept(dept);
 //				tprofess.getArchives().getBasInfoPers().setPicName(profess.getPicName());
-				tprofess.setUptTime(new Date());
+				
 			professDAO.update(tprofess);
 			//生成日志
 			this.saveLog(Constants.LOG_TYPE_CODE_PROFESS, Constants.LOG_TYPE_OPERTYPE_EDIT, id, "[授课]授课修改（授课ID："+id+"）");
