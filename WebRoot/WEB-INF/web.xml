@@ -4,7 +4,7 @@
   <display-name>zxta</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring.xml,classpath:spring-hibernate.xml</param-value>
+    <param-value>classpath:spring.xml,classpath:spring-hibernate.xml,classpath:spring-webservice.xml</param-value>
   </context-param>
   <filter>
     <filter-name>druidWebStatFilter</filter-name>
