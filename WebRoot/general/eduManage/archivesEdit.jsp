@@ -323,7 +323,7 @@ $(document).ready(function() {
 			<input type="hidden" name="baseInfoId" value="${archives.baseInfoId}" />
 			<input type="hidden" name="id" value="${archives.id}" />
 			<input type="hidden" id="certFilesId" name="certFiles" value="${archives.certFiles}" />
-			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
+			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:800px;">
 				<tr>
 					<td>
 						<table class="tableborder" id="formTable">
@@ -368,7 +368,7 @@ $(document).ready(function() {
 					</td>
 				</tr>
 			</table>
-			<div id="tt" class="easyui-tabs" style="width:1024px;">
+			<div id="tt" class="easyui-tabs" style="width:800px;">
 				<div title="人员基本信息" data-options="iconCls:'icon-role'">
 					<table class="tableborder" id="formTable">
 							<tr height="40" class="tablelabel">
@@ -617,7 +617,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 <!--材料上传区域 -->
-			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
+			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:800px;">
 				<tr height="25"  >
 	              <td height="25" width="20%" nowrap="nowrap" class="tablelabel">材料上传区域：<input type="button" value="添加" onclick="addFile()"/></td>
 	              <td id="fil" height="100" colspan="5" class="tablecontent"  align="left" style="padding-left:10px;">

@@ -613,7 +613,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 				<input type="hidden" id="eeIds" name="eeIds" />
 				<input type="hidden" id="weIds" name="weIds" />
 				<input type="hidden" id="certFilesId" name="certFiles" value="${archives.certFiles}" />
-				<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
+				<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:750px;">
 					<tr>
 						<td>
 							<table class="tableborder" id="formTable">
@@ -648,7 +648,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 						</td>
 					</tr>
 				</table>
-				<div id="tt" class="easyui-tabs" style="width:1024px;">
+				<div id="tt" class="easyui-tabs" style="width:750px;">
 					<div title="人员基本信息" data-options="iconCls:'icon-role'">
 						<table class="tableborder" id="formTable">
 								<tr height="40" class="tablelabel">
@@ -658,7 +658,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>
 									<td nowrap class="tablelabel" width="20%">曾用名：</td>
 									<td align="left" class="tablecontent" width="25%">
-										<input type="text"  name="nickName" value="${archives.nickName}" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="nickName" value="${archives.nickName}" style="width:99.8%;padding-left:2px"/>
 									</td>
 									<td align="center" class="tablecontent" width="10%" rowspan="5" style="text-align: center;">
 										<input type="hidden" style="width:100px" id="f1" name="picName" value="${archives.picName}">
@@ -683,21 +683,21 @@ $.extend($.fn.validatebox.defaults.rules, {
 								<tr height="40" class="tablelabel">
 									<td nowrap class="tablelabel" width="10%">性别：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input id="sexId" name="sex" value="${archives.sex}" style="width:250px;padding:2px" />
+										<input id="sexId" name="sex" value="${archives.sex}" style="width:200px;padding:2px" />
 									</td>
 									<td nowrap class="tablelabel" width="10%">民族：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input name="nation" value="${archives.nation}" style="width:250px;padding:2px" />
+										<input name="nation" value="${archives.nation}" style="width:200px;padding:2px" />
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
 									<td nowrap class="tablelabel" width="10%">政治面貌：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input name="political" value="${archives.political}" style="width:250px;padding:2px" />
+										<input name="political" value="${archives.political}" style="width:200px;padding:2px" />
 									</td>
 									<td nowrap class="tablelabel" width="10%">籍贯：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input type="text"  name="nativePlace" value="${archives.nativePlace}" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="nativePlace" value="${archives.nativePlace}" style="width:99.8%;padding-left:2px"/>
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
@@ -707,7 +707,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>
 									<td nowrap class="tablelabel" width="10%">出生日期：</td>
 									<td align="left" class="tablecontent" width="20%">
-									<input  name="birthDate"  type="text" value="${archives.birthDate}" class="easyui-datebox" data-options="editable:false" style="width:250px;"></input>
+									<input  name="birthDate"  type="text" value="${archives.birthDate}" class="easyui-datebox" data-options="editable:false" style="width:200px;"></input>
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
@@ -717,7 +717,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>	
 									<td nowrap class="tablelabel" width="10%">户口性质：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input name="resType" value="${archives.resType}" style="width:250px;padding:2px" />
+										<input name="resType" value="${archives.resType}" style="width:200px;padding:2px" />
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
@@ -737,17 +737,17 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>
 									<td nowrap class="tablelabel" width="10%">体重(kg)：</td>
 									<td colspan="2" align="left" class="tablecontent" width="20%">
-										<input type="text"  name="weight" value="${archives.weight}" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="weight" value="${archives.weight}" style="width:70%;padding-left:2px"/>
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
 									<td nowrap class="tablelabel" width="10%">健康状况：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input name="health" value="${archives.health}" style="width:250px;padding:2px" />
+										<input name="health" value="${archives.health}" style="width:200px;padding:2px" />
 									</td>
 									<td nowrap class="tablelabel" width="10%">手机：</td>
 									<td colspan="2" align="left" class="tablecontent" width="20%">
-										<input type="text"  name="mobilePhone" value="${archives.mobilePhone}"  class="easyui-validatebox" data-options="required:true" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="mobilePhone" value="${archives.mobilePhone}"  class="easyui-validatebox" data-options="required:true" style="width:70%;padding-left:2px"/>
 									</td>
 								</tr>
 								
@@ -758,7 +758,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>
 									<td nowrap class="tablelabel" width="10%">QQ：</td>
 									<td colspan="2" align="left" class="tablecontent" width="20%">
-										<input type="text"  name="qq" value="${archives.qq}" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="qq" value="${archives.qq}" style="width:70%;padding-left:2px"/>
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
@@ -768,7 +768,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>
 									<td nowrap class="tablelabel" width="10%">E-mail：</td>
 									<td colspan="2" align="left" class="tablecontent" width="20%">
-										<input type="text"  name="email" value="${archives.email}" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="email" value="${archives.email}" style="width:70%;padding-left:2px"/>
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
@@ -778,17 +778,17 @@ $.extend($.fn.validatebox.defaults.rules, {
 									</td>	
 									<td nowrap class="tablelabel" width="10%">计算机水平：</td>
 									<td colspan="2" align="left" class="tablecontent" width="20%">
-										<input name="compuLevel" value="${archives.compuLevel}" style="width:391px;padding:2px" />
+										<input name="compuLevel" value="${archives.compuLevel}" style="width:242px;padding:2px" />
 									</td>
 								</tr>
 								<tr height="40" class="tablelabel">
 									<td nowrap class="tablelabel" width="10%">所学外语语种：</td>
 									<td align="left" class="tablecontent" width="20%">
-										<input name="foreignType" value="${archives.foreignType}" style="width:250px;padding:2px" />
+										<input name="foreignType" value="${archives.foreignType}" style="width:200px;padding:2px" />
 									</td>
 									<td nowrap class="tablelabel" width="10%">兴趣爱好：</td>
 									<td colspan="2" align="left" class="tablecontent" width="20%">
-										<input type="text"  name="interestAndHobby" value="${archives.interestAndHobby}" style="width:98%;padding-left:2px"/>
+										<input type="text"  name="interestAndHobby" value="${archives.interestAndHobby}" style="width:70%;padding-left:2px"/>
 									</td>
 								</tr>
 							</table>
@@ -798,51 +798,51 @@ $.extend($.fn.validatebox.defaults.rules, {
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">家庭人口数：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input type="text"  name="peoNum" value="${archives.peoNum}" style="width:98%;padding-left:2px"/>
+									<input type="text"  name="peoNum" value="${archives.peoNum}" style="width:70%;padding-left:2px"/>
 								</td>
 								<td nowrap class="tablelabel" width="10%">详细通讯地址：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input type="text"  name="addr" value="${archives.addr}" style="width:98%;padding-left:2px"/>
+									<input type="text"  name="addr" value="${archives.addr}" style="width:70%;padding-left:2px"/>
 								</td>
 							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">联系电话：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input type="text"  name="tel" value="${archives.tel}" style="width:98%;padding-left:2px"/>
+									<input type="text"  name="tel" value="${archives.tel}" style="width:70%;padding-left:2px"/>
 								</td>
 								<td nowrap class="tablelabel" width="10%">家庭经济状况：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="ecoStatus" value="${archives.ecoStatus}" style="width:378px;padding:2px" />
+									<input name="ecoStatus" value="${archives.ecoStatus}" style="width:200px;padding:2px" />
 								</td>
 							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">主要经济来源：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input type="text"  name="ecoFrom" value="${archives.ecoFrom}" style="width:98%;padding-left:2px"/>
+									<input type="text"  name="ecoFrom" value="${archives.ecoFrom}" style="width:70%;padding-left:2px"/>
 								</td>
 								<td nowrap class="tablelabel" width="10%">总收入（万元/年）：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input type="text"  name="ecoTotal" value="${archives.ecoTotal}" style="width:98%;padding-left:2px"/>
+									<input type="text"  name="ecoTotal" value="${archives.ecoTotal}" style="width:70%;padding-left:2px"/>
 								</td>
 							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">主要支出：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input type="text"  name="ecoPay" value="${archives.ecoPay}" style="width:98%;padding-left:2px"/>
+									<input type="text"  name="ecoPay" value="${archives.ecoPay}" style="width:70%;padding-left:2px"/>
 								</td>
 								<td nowrap class="tablelabel" width="10%">家庭教育背景：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="teachBack" value="${archives.teachBack}" style="width:378px;padding:2px" />
+									<input name="teachBack" value="${archives.teachBack}" style="width:200px;padding:2px" />
 								</td>
 							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">是否有低保证：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="basicLive" value="${archives.basicLive}" style="width:378px;padding:2px" />
+									<input name="basicLive" value="${archives.basicLive}" style="width:200px;padding:2px" />
 								</td>
 								<td nowrap class="tablelabel" width="10%">是否享受过补助：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="helping" value="${archives.helping}" style="width:378px;padding:2px" />
+									<input name="helping" value="${archives.helping}" style="width:200px;padding:2px" />
 								</td>
 							</tr>
 							<tr height="60">
@@ -873,7 +873,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 					</div>
 				</div>
 <!--材料上传区域 -->
-				<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
+				<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:750px;">
 					<tr height="25"  >
 		              <td height="25" width="20%" nowrap="nowrap" class="tablelabel">材料上传区域：<input type="button" value="添加" onclick="addFile()"/></td>
 		              <td id="fil" height="100" colspan="5" class="tablecontent"  align="left" style="padding-left:10px;">

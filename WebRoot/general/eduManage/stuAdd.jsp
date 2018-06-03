@@ -116,7 +116,7 @@ $(document).ready(function() {
 <div align="center" style="padding: 5px;overflow: hidden;">
 		<form id="addForm" method="post">
 			<input type="hidden" name="stuNo" value="${stu.stuNo}" /> 
-			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:1024px;">
+			<table border="0" align="center" cellpadding="0" cellspacing="0" style="width:750px;">
 				<tr>
 					<td>
 						<table class="tableborder" id="formTable">
@@ -138,25 +138,25 @@ $(document).ready(function() {
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">院系部：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="dept" value="${stu.dept}" style="width:300px;padding:2px"  />
+									<input name="dept" value="${stu.dept}" style="width:200px;padding:2px"  />
 								</td>
 								<td nowrap class="tablelabel" width="10%">专业：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="major" value="${stu.major}" style="width:300px;padding:2px"/>
+									<input name="major" value="${stu.major}" style="width:200px;padding:2px"/>
 								</td>
 							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">所在班级：</td>
 								<td align="left" class="tablecontent" width="20%">
 									<input id="classIdId"  name="classId" type="hidden" value="${stu.classId}"/>
-					              	<input id="classNameId"  name="className"  value="${stu.className}" class="easyui-validatebox" data-options="required:true" style="width:150px;" readonly="readonly"/>
+					              	<input id="classNameId"  name="className"  value="${stu.className}" class="easyui-validatebox" data-options="required:true" style="width:100px;" readonly="readonly"/>
 					              	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="classSelect()">选择</a>
 					             	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="$('#classIdId').val('');$('#classNameId').val('');">取消</a>
 								</td>
 								<td nowrap class="tablelabel" width="10%">档案编号：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input id="archNoId"  name="archNo" type="text" value="${stu.archNo}" class="easyui-validatebox"  style="width:100px;" data-options="required:true" readonly="readonly"/>
-									<input id="nameId"  name="name" type="text" value="${stu.name}" class="easyui-validatebox"  style="width:100px;" data-options="required:true" readonly="readonly"/>
+									<input id="archNoId"  name="archNo" type="text" value="${stu.archNo}" class="easyui-validatebox"  style="width:70px;" data-options="required:true" readonly="readonly"/>
+									<input id="nameId"  name="name" type="text" value="${stu.name}" class="easyui-validatebox"  style="width:70px;" data-options="required:true" readonly="readonly"/>
 					              	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="archSelect()">选择</a>
 					             	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="$('#archNoId').val('');$('#nameId').val('');$('#pNameId').text('');$('#pSexNameId').text('');">取消</a>
 								</td>
@@ -168,13 +168,13 @@ $(document).ready(function() {
 								</td>
 								<td nowrap class="tablelabel" width="10%">入学来源：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="enSour" value="${stu.enSour}" style="width:300px;padding:2px" />
+									<input name="enSour" value="${stu.enSour}" style="width:200px;padding:2px" />
 								</td>
 							</tr>
 							<tr height="40" class="tablelabel">
 								<td nowrap class="tablelabel" width="10%">主要问题：</td>
 								<td align="left" class="tablecontent" width="20%">
-									<input name="priPro" value="${stu.priPro}" style="width:369px;padding:2px" />
+									<input name="priPro" value="${stu.priPro}" style="width:200px;padding:2px" />
 								</td>
 								<td nowrap class="tablelabel" width="10%">毕业以后的打算：</td>
 								<td align="left" class="tablecontent" width="20%">
