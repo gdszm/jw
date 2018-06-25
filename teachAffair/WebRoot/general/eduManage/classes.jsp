@@ -34,7 +34,7 @@
 			selectOnCheck:false,
 			frozenColumns:[[
 				{field:'id',title:'ID',width:100,align:'center',checkbox : true},
-				{field:'className',title:'班级名称',width:250,align:'center'}
+				{field:'className',title:'班级名称',width:250,align:'left'}
 				]],
 			columns:[[
 				{field:'trainLevelName',title:'培养层次',width:100,align:'center'},
