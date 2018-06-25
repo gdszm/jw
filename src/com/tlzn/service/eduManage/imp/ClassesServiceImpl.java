@@ -145,7 +145,7 @@ public class ClassesServiceImpl extends BaseServiceImpl implements ClassesServic
 		if (classes.getSort() != null && classes.getOrder() != null) {
 			hql += " order by " + classes.getSort() + " " + classes.getOrder();
 		}else {
-			hql+=" order by t.uptTime desc, t.crtTime desc";
+			hql+=" order by t.className, t.uptTime desc, t.crtTime desc";
 		}
 		List<Tclasses> classesList = classesDAO.find(hql, classes.getPage(), classes.getRows());
 		return classesList;
